@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="420" viewBox="0 0 1200 420" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">soft-llm-stream quality card</title>
+  <desc id="desc">Latest validation summary with package size, idle-gap softness, and benchmark tail lag.</desc>
+  <defs>
+    <linearGradient id="bg" x1="120" y1="32" x2="1042" y2="392" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101722"/>
+      <stop offset="1" stop-color="#0d131c"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(208 44) rotate(21.8) scale(475 234)">
+      <stop stop-color="#7bdff6" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#7bdff6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="420" rx="36" fill="#0a0d12"/>
+  <rect x="12" y="12" width="1176" height="396" rx="30" fill="url(#bg)" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="12" y="12" width="1176" height="396" rx="30" fill="url(#glow)"/>
+  <text x="40" y="56" fill="#7bdff6" font-size="12" font-family="Inter, Arial, sans-serif" letter-spacing="2.1">SHOWCASE SNAPSHOT</text>
+  <text x="40" y="104" fill="#edf2ff" font-size="42" font-weight="800" font-family="Inter, Arial, sans-serif">soft-llm-stream</text>
+  <text x="40" y="138" fill="#9fb0cf" font-size="20" font-family="Inter, Arial, sans-serif">Headless smoothing for bursty LLM streams</text>
+  <g transform="translate(862 42)">
+    <rect width="292" height="76" rx="18" fill="rgba(9,12,18,0.68)" stroke="rgba(123,223,246,0.24)"/>
+    <text x="22" y="31" fill="#87f0c1" font-size="12" font-family="Inter, Arial, sans-serif" letter-spacing="1.4">RECOMMENDED DEMO PROFILE</text>
+    <text x="22" y="59" fill="#edf2ff" font-size="26" font-weight="700" font-family="Inter, Arial, sans-serif">fastFirst</text>
+    <text x="170" y="59" fill="#9fb0cf" font-size="15" font-family="Inter, Arial, sans-serif">idle-safe: fastFirst</text>
+  </g>
+  
+      <g transform="translate(40 156)">
+        <rect width="258" height="122" rx="20" fill="rgba(16,23,34,0.82)" stroke="rgba(255,255,255,0.08)"/>
+        <text x="22" y="34" fill="#7bdff6" font-size="11" font-family="Inter, Arial, sans-serif" letter-spacing="1.6" text-transform="uppercase">LAB GATES</text>
+        <text x="22" y="74" fill="#edf2ff" font-size="32" font-weight="700" font-family="Inter, Arial, sans-serif">9/9</text>
+        <text x="22" y="102" fill="#9fb0cf" font-size="15" font-family="Inter, Arial, sans-serif">all green</text>
+      </g>
+      <g transform="translate(316 156)">
+        <rect width="258" height="122" rx="20" fill="rgba(16,23,34,0.82)" stroke="rgba(255,255,255,0.08)"/>
+        <text x="22" y="34" fill="#7bdff6" font-size="11" font-family="Inter, Arial, sans-serif" letter-spacing="1.6" text-transform="uppercase">CORE GZIP</text>
+        <text x="22" y="74" fill="#edf2ff" font-size="32" font-weight="700" font-family="Inter, Arial, sans-serif">9736 B</text>
+        <text x="22" y="102" fill="#9fb0cf" font-size="15" font-family="Inter, Arial, sans-serif">publish artifact</text>
+      </g>
+      <g transform="translate(592 156)">
+        <rect width="258" height="122" rx="20" fill="rgba(16,23,34,0.82)" stroke="rgba(255,255,255,0.08)"/>
+        <text x="22" y="34" fill="#7bdff6" font-size="11" font-family="Inter, Arial, sans-serif" letter-spacing="1.6" text-transform="uppercase">IDLE SOFTNESS</text>
+        <text x="22" y="74" fill="#edf2ff" font-size="32" font-weight="700" font-family="Inter, Arial, sans-serif">0.075 / 0.147</text>
+        <text x="22" y="102" fill="#9fb0cf" font-size="15" font-family="Inter, Arial, sans-serif">250ms / 750ms</text>
+      </g>
+      <g transform="translate(868 156)">
+        <rect width="258" height="122" rx="20" fill="rgba(16,23,34,0.82)" stroke="rgba(255,255,255,0.08)"/>
+        <text x="22" y="34" fill="#7bdff6" font-size="11" font-family="Inter, Arial, sans-serif" letter-spacing="1.6" text-transform="uppercase">TAIL LAG</text>
+        <text x="22" y="74" fill="#edf2ff" font-size="32" font-weight="700" font-family="Inter, Arial, sans-serif">381.7 ms</text>
+        <text x="22" y="102" fill="#9fb0cf" font-size="15" font-family="Inter, Arial, sans-serif">fastFirst p95</text>
+      </g>
+  <text x="40" y="362" fill="#9fb0cf" font-size="14" font-family="Inter, Arial, sans-serif">Generated from reports/full-lab-summary.json · updated 2026-04-19</text>
+</svg>

@@ -1,0 +1,6 @@
+{
+  "sourceBundleSha256": "616bc9ff65cca1c7aef84b15f4d6ea36014bd23c02c52cebc28c6a890180d1f2",
+  "fallbackBundleSha256": "505e2904918f1caf4580fba4ecaddcb7f78d28951d9972bc2d94a0ca12546f49",
+  "source": "package/dist/core.js from soft-llm-stream-final-ideal.zip",
+  "createdAt": "2026-04-19T11:24:30Z"
+}

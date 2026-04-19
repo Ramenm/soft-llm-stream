@@ -1,0 +1,25 @@
+export const EMPTY_SNAPSHOT = {
+    status: "idle",
+    text: "",
+    fullText: "",
+    error: null,
+    meta: {},
+    startedAt: null,
+    completedAt: null,
+    hasBacklog: false,
+};
+export const EMPTY_DEBUG_STATE = {
+    mode: "bootstrap",
+    arrivalRateCharsPerMs: 0,
+    predictedGapMs: 0,
+    jitterMs: 0,
+    hiddenBacklogChars: 0,
+    hiddenBacklogHorizonMs: 0,
+    reserveHorizonMs: 0,
+    targetHorizonMs: 0,
+    maxHorizonMs: 0,
+    visibleRateCharsPerMs: 0,
+    revealBudgetChars: 0,
+    isComplete: false,
+    sampleCount: 0,
+};

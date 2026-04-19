@@ -1,0 +1,70 @@
+{
+  "name": "steady-drip",
+  "description": "Small equal chunks at a steady cadence.",
+  "events": [
+    {
+      "delayMs": 40,
+      "text": "abcd"
+    },
+    {
+      "delayMs": 40,
+      "text": "abcd"
+    },
+    {
+      "delayMs": 40,
+      "text": "abcd"
+    },
+    {
+      "delayMs": 40,
+      "text": "abcd"
+    },
+    {
+      "delayMs": 40,
+      "text": "abcd"
+    },
+    {
+      "delayMs": 40,
+      "text": "abcd"
+    },
+    {
+      "delayMs": 40,
+      "text": "abcd"
+    },
+    {
+      "delayMs": 40,
+      "text": "abcd"
+    },
+    {
+      "delayMs": 40,
+      "text": "abcd"
+    },
+    {
+      "delayMs": 40,
+      "text": "abcd"
+    },
+    {
+      "delayMs": 40,
+      "text": "abcd"
+    },
+    {
+      "delayMs": 40,
+      "text": "abcd"
+    },
+    {
+      "delayMs": 40,
+      "text": "abcd"
+    },
+    {
+      "delayMs": 40,
+      "text": "abcd"
+    },
+    {
+      "delayMs": 40,
+      "text": "abcd"
+    },
+    {
+      "delayMs": 40,
+      "text": "abcd"
+    }
+  ]
+}

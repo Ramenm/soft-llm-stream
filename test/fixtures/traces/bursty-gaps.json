@@ -1,0 +1,30 @@
+{
+  "name": "bursty-gaps",
+  "description": "Longer pauses and uneven chunk sizes that expose oscillation.",
+  "events": [
+    {
+      "delayMs": 0,
+      "text": "The reveal "
+    },
+    {
+      "delayMs": 180,
+      "text": "controller "
+    },
+    {
+      "delayMs": 20,
+      "text": "should feel like "
+    },
+    {
+      "delayMs": 260,
+      "text": "continuous "
+    },
+    {
+      "delayMs": 25,
+      "text": "typing rather than "
+    },
+    {
+      "delayMs": 240,
+      "text": "a stream of network chunks."
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  core:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [18, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck --silent
+      - run: npm test --silent
+      - run: npm run lab:protocol --silent
+
+  showcase:
+    runs-on: ubuntu-latest
+    needs: core
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lab:full --silent
+      - run: npm run examples:smoke --silent
+      - run: npm run size:check --silent
+      - uses: actions/upload-artifact@v4
+        with:
+          name: showcase-artifacts
+          path: |
+            reports/full-lab-summary.json
+            reports/full-lab-summary.md
+            docs/assets/quality-card.svg

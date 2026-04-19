@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="420" viewBox="0 0 1200 420" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">soft-llm-stream overview</title>
+  <desc id="desc">Provider stream enters a normalize stage, then soft reveal pacing, then UI or CLI output.</desc>
+  <defs>
+    <linearGradient id="bg" x1="80" y1="16" x2="1120" y2="404" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101722"/>
+      <stop offset="1" stop-color="#0d131c"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="190" y1="112" x2="1016" y2="326" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7bdff6" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#87f0c1" stop-opacity="0.22"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="420" rx="36" fill="#0a0d12"/>
+  <rect x="16" y="16" width="1168" height="388" rx="28" fill="url(#bg)" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="16" y="16" width="1168" height="388" rx="28" fill="url(#accent)"/>
+  <text x="42" y="54" fill="#7bdff6" font-size="12" font-family="Inter, Arial, sans-serif" letter-spacing="2">HOW IT WORKS</text>
+  <text x="42" y="96" fill="#edf2ff" font-size="38" font-weight="800" font-family="Inter, Arial, sans-serif">One headless stream controller, many frontends</text>
+  <g transform="translate(42 150)">
+    <rect width="290" height="180" rx="24" fill="rgba(16,23,34,0.86)" stroke="rgba(255,255,255,0.08)"/>
+    <text x="24" y="38" fill="#7bdff6" font-size="12" font-family="Inter, Arial, sans-serif" letter-spacing="1.6">INPUTS</text>
+    <text x="24" y="74" fill="#edf2ff" font-size="28" font-weight="700" font-family="Inter, Arial, sans-serif">text · SSE · JSONL · events</text>
+    <text x="24" y="112" fill="#9fb0cf" font-size="16" font-family="Inter, Arial, sans-serif">Provider streams, SDK iterables, and custom object events all land in the same normalized contract.</text>
+  </g>
+  <g transform="translate(454 132)">
+    <rect width="294" height="216" rx="24" fill="rgba(9,12,18,0.72)" stroke="rgba(123,223,246,0.22)"/>
+    <text x="24" y="42" fill="#87f0c1" font-size="12" font-family="Inter, Arial, sans-serif" letter-spacing="1.6">CORE</text>
+    <text x="24" y="82" fill="#edf2ff" font-size="30" font-weight="700" font-family="Inter, Arial, sans-serif">normalize → reveal → settle</text>
+    <text x="24" y="124" fill="#9fb0cf" font-size="16" font-family="Inter, Arial, sans-serif">Preserves grapheme boundaries, stays soft after long gaps, avoids tail snaps, and exposes meta phases for honest waiting states.</text>
+    <text x="24" y="186" fill="#edf2ff" font-size="18" font-family="Inter, Arial, sans-serif">Headless. Tiny. Verified.</text>
+  </g>
+  <g transform="translate(870 150)">
+    <rect width="288" height="180" rx="24" fill="rgba(16,23,34,0.86)" stroke="rgba(255,255,255,0.08)"/>
+    <text x="24" y="38" fill="#7bdff6" font-size="12" font-family="Inter, Arial, sans-serif" letter-spacing="1.6">OUTPUTS</text>
+    <text x="24" y="74" fill="#edf2ff" font-size="28" font-weight="700" font-family="Inter, Arial, sans-serif">browser · React · CLI · SDK wrappers</text>
+    <text x="24" y="112" fill="#9fb0cf" font-size="16" font-family="Inter, Arial, sans-serif">Render snapshot.text anywhere while meta phases drive honest progress UI before the next visible chunk arrives.</text>
+  </g>
+  <path d="M336 240H430" stroke="#7bdff6" stroke-width="4" stroke-linecap="round"/>
+  <path d="M748 240H846" stroke="#87f0c1" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="430" cy="240" r="7" fill="#7bdff6"/>
+  <circle cx="846" cy="240" r="7" fill="#87f0c1"/>
+</svg>

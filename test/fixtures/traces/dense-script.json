@@ -1,0 +1,26 @@
+{
+  "name": "dense-script",
+  "description": "Dense-script text with irregular chunk sizes and timing.",
+  "events": [
+    {
+      "delayMs": 0,
+      "text": "継続的な表示"
+    },
+    {
+      "delayMs": 130,
+      "text": "速度を保ちながら"
+    },
+    {
+      "delayMs": 35,
+      "text": "不規則な到着でも"
+    },
+    {
+      "delayMs": 180,
+      "text": "自然に読めること"
+    },
+    {
+      "delayMs": 40,
+      "text": "が重要です。"
+    }
+  ]
+}

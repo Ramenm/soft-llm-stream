@@ -1,0 +1,30 @@
+{
+  "name": "code-fence-lines",
+  "description": "Code-fence content with line-safe boundaries.",
+  "events": [
+    {
+      "delayMs": 0,
+      "text": "```ts\n"
+    },
+    {
+      "delayMs": 90,
+      "text": "export function sum("
+    },
+    {
+      "delayMs": 35,
+      "text": "values: number[]) {\n"
+    },
+    {
+      "delayMs": 160,
+      "text": "  return values.reduce("
+    },
+    {
+      "delayMs": 40,
+      "text": "(total, value) => total + value, 0);\n"
+    },
+    {
+      "delayMs": 120,
+      "text": "}\n```"
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>soft-llm-stream browser compare</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Browser example</p>
+          <h1>Raw stream vs soft-llm-stream</h1>
+          <p class="lede">
+            Same scripted arrivals, two reading experiences: the left side dumps
+            visible chunks as they land, the right side smooths those same
+            arrivals into steadier motion.
+          </p>
+        </div>
+        <div class="hero-card">
+          <p class="lane-label">Read this first</p>
+          <ul class="hero-points">
+            <li>the page starts on a realistic short chat trace automatically</li>
+            <li>use the left panel to see how bursty frontend delivery feels</li>
+            <li>watch the right panel stay smoother through the same gaps</li>
+          </ul>
+        </div>
+      </header>
+
+      <section class="controls" aria-label="Demo controls">
+        <label>
+          <span>Trace</span>
+          <select id="trace-select"></select>
+        </label>
+        <label>
+          <span>Reveal profile</span>
+          <select id="profile-select">
+            <option value="balanced">balanced</option>
+            <option value="fastFirst">fastFirst</option>
+            <option value="softFinish">softFinish</option>
+          </select>
+        </label>
+        <label class="toggle">
+          <input id="loop-toggle" type="checkbox" checked />
+          <span>Auto loop</span>
+        </label>
+        <button id="restart-button" type="button">Restart compare</button>
+      </section>
+
+      <section class="trace-profile" aria-label="Current trace profile">
+        <div>
+          <p class="lane-label">Current trace profile</p>
+          <h2 id="trace-profile-title">—</h2>
+          <p class="trace-description" id="trace-profile-description">—</p>
+        </div>
+        <dl class="profile-metrics" id="trace-profile-metrics"></dl>
+      </section>
+
+      <section class="experience-strip" aria-label="Live comparison summary">
+        <article class="experience-card">
+          <p class="lane-label">Largest jump</p>
+          <h2 id="summary-jump-value">watching</h2>
+          <p class="experience-note" id="summary-jump-note">Largest visible burst per update.</p>
+        </article>
+        <article class="experience-card">
+          <p class="lane-label">Longest freeze</p>
+          <h2 id="summary-freeze-value">watching</h2>
+          <p class="experience-note" id="summary-freeze-note">Longest user-visible stall so far.</p>
+        </article>
+        <article class="experience-card">
+          <p class="lane-label">Visible updates</p>
+          <h2 id="summary-updates-value">watching</h2>
+          <p class="experience-note" id="summary-updates-note">How many visible text refreshes the user gets.</p>
+        </article>
+        <article class="experience-card">
+          <p class="lane-label">Done delta</p>
+          <h2 id="summary-done-value">running</h2>
+          <p class="experience-note" id="summary-done-note">Final completion timing difference.</p>
+        </article>
+      </section>
+
+      <section class="compare" aria-label="Raw versus smoothed output">
+        <article class="lane">
+          <div class="lane-head">
+            <div>
+              <p class="lane-label">Without smoothing</p>
+              <h2>Raw chunk stream</h2>
+            </div>
+            <div class="status" id="raw-status">idle</div>
+          </div>
+          <dl class="metrics" id="raw-metrics"></dl>
+          <div class="lane-toolbar">
+            <p class="lane-hint" id="raw-follow-hint"></p>
+            <button class="follow-button" id="raw-follow-button" type="button" hidden>
+              Jump to latest
+            </button>
+          </div>
+          <pre class="output" id="raw-output"></pre>
+        </article>
+
+        <article class="lane lane-accent">
+          <div class="lane-head">
+            <div>
+              <p class="lane-label">With library</p>
+              <h2>soft-llm-stream</h2>
+            </div>
+            <div class="status" id="smooth-status">idle</div>
+          </div>
+          <dl class="metrics" id="smooth-metrics"></dl>
+          <div class="lane-toolbar">
+            <p class="lane-hint" id="smooth-follow-hint"></p>
+            <button class="follow-button" id="smooth-follow-button" type="button" hidden>
+              Jump to latest
+            </button>
+          </div>
+          <pre class="output" id="smooth-output"></pre>
+        </article>
+      </section>
+
+      <section class="notes">
+        <details class="notes-panel" open>
+          <summary>
+            <span class="lane-label">What to look for</span>
+            <span class="notes-summary">Quick reading guide</span>
+          </summary>
+          <ul>
+            <li>left side waits for each incoming chunk, then visibly dumps it</li>
+            <li>right side starts fast, then keeps motion steadier between bursts</li>
+            <li>restart on different traces to see prose, code, unicode, mid-stream gaps, and 4k-5k long outputs with ramp-up and ramp-down chunk patterns</li>
+          </ul>
+        </details>
+        <details class="notes-panel">
+          <summary>
+            <span class="lane-label">API used</span>
+            <span class="notes-summary">The exact code this demo runs</span>
+          </summary>
+          <pre class="snippet"><code>import { createSoftLlmStream } from "./dist/index.js";</code></pre>
+          <pre class="snippet"><code>const store = createSoftLlmStream({
+  source,
+  revealProfile: "fastFirst",
+});</code></pre>
+        </details>
+      </section>
+    </main>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

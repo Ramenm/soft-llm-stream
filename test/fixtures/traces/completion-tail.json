@@ -1,0 +1,34 @@
+{
+  "name": "completion-tail",
+  "description": "Slow stream followed by a larger final completion burst.",
+  "events": [
+    {
+      "delayMs": 0,
+      "text": "Hello"
+    },
+    {
+      "delayMs": 120,
+      "text": " there"
+    },
+    {
+      "delayMs": 120,
+      "text": ", this"
+    },
+    {
+      "delayMs": 120,
+      "text": " is"
+    },
+    {
+      "delayMs": 120,
+      "text": " a"
+    },
+    {
+      "delayMs": 120,
+      "text": " streamed"
+    },
+    {
+      "delayMs": 25,
+      "text": " completion tail with a bigger final chunk."
+    }
+  ]
+}

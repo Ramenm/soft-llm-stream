@@ -1,0 +1,30 @@
+{
+  "name": "pause-recovery",
+  "description": "A long pause in the middle followed by recovery and continued streaming.",
+  "events": [
+    {
+      "delayMs": 0,
+      "text": "Smooth "
+    },
+    {
+      "delayMs": 70,
+      "text": "text "
+    },
+    {
+      "delayMs": 70,
+      "text": "flow "
+    },
+    {
+      "delayMs": 320,
+      "text": "should recover "
+    },
+    {
+      "delayMs": 45,
+      "text": "after a pause "
+    },
+    {
+      "delayMs": 55,
+      "text": "without a visible snap."
+    }
+  ]
+}

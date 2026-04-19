@@ -1,0 +1,97 @@
+{
+  "name": "@ramenm/soft-llm-stream",
+  "version": "0.6.5",
+  "description": "Headless smoothing and flow control for streamed LLM text.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/core.js",
+  "types": "./dist/core.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/core.d.ts",
+      "import": "./dist/core.js"
+    }
+  },
+  "sideEffects": false,
+  "keywords": [
+    "llm",
+    "streaming",
+    "chat",
+    "sse",
+    "jsonl",
+    "smoothing",
+    "typescript",
+    "headless"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ramenm/soft-llm-stream.git"
+  },
+  "homepage": "https://github.com/Ramenm/soft-llm-stream#readme",
+  "bugs": {
+    "url": "https://github.com/Ramenm/soft-llm-stream/issues"
+  },
+  "files": [
+    "dist/arrival-estimator.js",
+    "dist/core-types.js",
+    "dist/core-types.d.ts",
+    "dist/core-utils.js",
+    "dist/core.js",
+    "dist/core.d.ts",
+    "dist/reveal-boundaries.js",
+    "dist/reveal-controller.js",
+    "dist/reveal-tuning.js",
+    "dist/reveal-tuning.d.ts",
+    "dist/stream-adapters.js",
+    "dist/stream-adapters.d.ts",
+    "README.md",
+    "LICENSE",
+    "package.json"
+  ],
+  "scripts": {
+    "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
+    "build": "npm run clean --silent && tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build --silent && node --test --test-concurrency=1",
+    "demo:web": "node ./scripts/ensure-dist.mjs && node ./scripts/demo-browser-server.mjs",
+    "bench:smoothness": "npm run build --silent && node ./scripts/benchmark-smoothness.mjs",
+    "lab:search": "npm run build --silent && node ./scripts/search-tuning.mjs",
+    "lab:compare": "npm run build --silent && node ./scripts/compare-strategies.mjs",
+    "lab:stress": "npm run build --silent && node ./scripts/stress-benchmark.mjs",
+    "lab:long": "npm run build --silent && node ./scripts/long-output-benchmark.mjs",
+    "lab:extreme": "npm run build --silent && node --expose-gc ./scripts/extreme-benchmark.mjs",
+    "lab:idle": "npm run build --silent && node --expose-gc ./scripts/idle-gap-benchmark.mjs",
+    "demo:random": "npm run build --silent && node ./scripts/demo-random-stand.mjs",
+    "lab:perf": "npm run build --silent && node --expose-gc ./scripts/perf-benchmark.mjs",
+    "lab:fuzz": "npm run build --silent && node ./scripts/invariant-fuzz.mjs",
+    "lab:client": "npm run build --silent && node ./scripts/client-cost-benchmark.mjs",
+    "lab:protocol": "npm run build --silent && node ./scripts/protocol-compat-lab.mjs",
+    "lab:full": "npm run build --silent && node ./scripts/full-lab.mjs",
+    "docs:quality-card": "node ./scripts/render-quality-card.mjs",
+    "examples:smoke": "npm run build --silent && node ./scripts/smoke-examples.mjs",
+    "showcase:check": "npm run typecheck --silent && npm test --silent && npm run lab:protocol --silent && npm run lab:full --silent && npm run examples:smoke --silent && npm run size:check --silent",
+    "lab:all": "npm run lab:full --silent",
+    "lab:massive": "npm run build --silent && node ./scripts/massive-validation.mjs",
+    "lab:gate": "node ./scripts/release-gate.mjs",
+    "pack:check": "npm run build:lean --silent && npm pack --dry-run --ignore-scripts ./package",
+    "publish:check": "node ./scripts/release-gate.mjs",
+    "prepack": "npm run build --silent",
+    "build:lean": "npm run build --silent && node ./scripts/build-lean-package.mjs",
+    "size:check": "npm run build --silent && node ./scripts/check-lean-package.mjs",
+    "check:quick": "node ./scripts/ensure-dist.mjs && node --test --test-concurrency=1 && node ./scripts/full-lab.mjs && node ./scripts/smoke-examples.mjs && node ./scripts/check-lean-package.mjs",
+    "demo:web:ready": "node ./scripts/ensure-dist.mjs && node ./scripts/demo-browser-server.mjs"
+  },
+  "engines": {
+    "node": ">=18",
+    "npm": ">=9"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "packageManager": "npm@10.9.2",
+  "devDependencies": {
+    "terser": "^5.46.1",
+    "typescript": "5.8.3"
+  },
+  "private": true
+}

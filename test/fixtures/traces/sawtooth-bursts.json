@@ -1,0 +1,34 @@
+{
+  "name": "sawtooth-bursts",
+  "description": "Alternating short and large arrivals that can produce visible surges.",
+  "events": [
+    {
+      "delayMs": 0,
+      "text": "A "
+    },
+    {
+      "delayMs": 55,
+      "text": "good reveal "
+    },
+    {
+      "delayMs": 25,
+      "text": "controller "
+    },
+    {
+      "delayMs": 90,
+      "text": "should hide "
+    },
+    {
+      "delayMs": 30,
+      "text": "the raw shape "
+    },
+    {
+      "delayMs": 110,
+      "text": "of chunk boundaries "
+    },
+    {
+      "delayMs": 35,
+      "text": "without feeling late."
+    }
+  ]
+}
