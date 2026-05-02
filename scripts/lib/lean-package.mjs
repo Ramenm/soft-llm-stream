@@ -295,7 +295,43 @@ function createLeanPackageJson() {
 }
 
 function createLeanReadme() {
-  return "# @ramenm/soft-llm-stream\n\nCore runtime.\n";
+  return `# @ramenm/soft-llm-stream
+
+Small headless smoothing for bursty LLM text streams.
+
+![soft-llm-stream browser demo recording](https://raw.githubusercontent.com/Ramenm/soft-llm-stream/main/docs/assets/demo-recording.gif)
+
+![soft-llm-stream overview](https://raw.githubusercontent.com/Ramenm/soft-llm-stream/main/docs/assets/overview.svg)
+
+\`soft-llm-stream\` sits between an incoming stream and the UI. It normalizes real provider output, keeps reveal speed perceptually steadier, preserves grapheme boundaries, stays soft after long gaps, and finishes without ugly tail snaps.
+
+## Install
+
+\`\`\`bash
+npm install @ramenm/soft-llm-stream
+\`\`\`
+
+## Basic usage
+
+\`\`\`ts
+import { createSoftLlmChatStream } from '@ramenm/soft-llm-stream';
+
+const store = createSoftLlmChatStream({
+  source: fetch('/api/chat'),
+  adapter: 'auto',
+  revealProfile: 'fastFirst',
+});
+
+store.subscribe(() => {
+  const snapshot = store.getSnapshot();
+  render(snapshot.text, snapshot.meta.phase);
+});
+
+await store.start();
+\`\`\`
+
+Published package: core-only runtime. Full demo, docs, tests, and validation reports live in the [GitHub repo](https://github.com/Ramenm/soft-llm-stream).
+`;
 }
 
 export async function buildLeanPackage() {

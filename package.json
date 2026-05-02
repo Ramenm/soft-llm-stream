@@ -1,6 +1,6 @@
 {
   "name": "@ramenm/soft-llm-stream",
-  "version": "0.6.5",
+  "version": "0.6.6",
   "description": "Headless smoothing and flow control for streamed LLM text.",
   "license": "MIT",
   "type": "module",
