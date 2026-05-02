@@ -38,9 +38,9 @@ const defaults = {
   fps: 12,
   width: 1440,
   height: 1080,
-  mp4Path: "docs/assets/demo-recording.mp4",
+  mp4Path: null,
   gifPath: "docs/assets/demo-recording.gif",
-  posterPath: "docs/assets/demo-recording-poster.jpg",
+  posterPath: null,
 };
 
 function parseArgs(argv) {
@@ -277,7 +277,6 @@ async function main() {
   const profileDir = path.join(runDir, "browser-profile");
 
   fs.mkdirSync(framesDir, { recursive: true });
-  fs.mkdirSync(path.dirname(path.resolve(rootDir, args.mp4Path)), { recursive: true });
 
   const server = spawn(process.execPath, ["./scripts/demo-browser-server.mjs"], {
     cwd: rootDir,
@@ -349,10 +348,17 @@ async function main() {
       await delay(Math.max(0, frameDelayMs - elapsed));
     }
 
-    const mp4Path = path.resolve(rootDir, args.mp4Path);
+    const publishedMp4Path = args.mp4Path ? path.resolve(rootDir, args.mp4Path) : null;
+    const mp4Path = publishedMp4Path ?? path.join(runDir, "recording-source.mp4");
     const gifPath = path.resolve(rootDir, args.gifPath);
-    const posterPath = path.resolve(rootDir, args.posterPath);
+    const posterPath = args.posterPath ? path.resolve(rootDir, args.posterPath) : null;
     const inputPattern = path.join(framesDir, "frame-%05d.jpg");
+
+    fs.mkdirSync(path.dirname(mp4Path), { recursive: true });
+    fs.mkdirSync(path.dirname(gifPath), { recursive: true });
+    if (posterPath) {
+      fs.mkdirSync(path.dirname(posterPath), { recursive: true });
+    }
 
     await run("ffmpeg", [
       "-hide_banner",
@@ -378,23 +384,25 @@ async function main() {
       mp4Path,
     ]);
 
-    await run("ffmpeg", [
-      "-hide_banner",
-      "-loglevel",
-      "error",
-      "-y",
-      "-ss",
-      "5",
-      "-i",
-      mp4Path,
-      "-frames:v",
-      "1",
-      "-q:v",
-      "3",
-      "-update",
-      "1",
-      posterPath,
-    ]);
+    if (posterPath) {
+      await run("ffmpeg", [
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-y",
+        "-ss",
+        "5",
+        "-i",
+        mp4Path,
+        "-frames:v",
+        "1",
+        "-q:v",
+        "3",
+        "-update",
+        "1",
+        posterPath,
+      ]);
+    }
 
     await run("ffmpeg", [
       "-hide_banner",
@@ -410,9 +418,24 @@ async function main() {
       gifPath,
     ]);
 
-    const mp4Size = fs.statSync(mp4Path).size;
     const gifSize = fs.statSync(gifPath).size;
-    const posterSize = fs.statSync(posterPath).size;
+    const outputs = {
+      gif: { path: path.relative(rootDir, gifPath), bytes: gifSize },
+    };
+
+    if (publishedMp4Path) {
+      outputs.mp4 = {
+        path: path.relative(rootDir, publishedMp4Path),
+        bytes: fs.statSync(publishedMp4Path).size,
+      };
+    }
+
+    if (posterPath) {
+      outputs.poster = {
+        path: path.relative(rootDir, posterPath),
+        bytes: fs.statSync(posterPath).size,
+      };
+    }
 
     console.log(
       JSON.stringify(
@@ -424,11 +447,7 @@ async function main() {
           trace: args.trace,
           profile: args.profile,
           frames: frameCount,
-          outputs: {
-            mp4: { path: path.relative(rootDir, mp4Path), bytes: mp4Size },
-            gif: { path: path.relative(rootDir, gifPath), bytes: gifSize },
-            poster: { path: path.relative(rootDir, posterPath), bytes: posterSize },
-          },
+          outputs,
         },
         null,
         2,

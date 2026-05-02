@@ -1,6 +1,6 @@
 # Full lab summary
 
-- generatedAt: 2026-05-02T10:35:26.494Z
+- generatedAt: 2026-05-02T10:50:20.555Z
 - overallOk: true
 - leanMinifier: terser
 - sourceBundleSha256: 616bc9ff65cca1c7aef84b15f4d6ea36014bd23c02c52cebc28c6a890180d1f2
@@ -15,7 +15,7 @@
 - [x] lean-tarball-types: ramenm-soft-llm-stream-0.6.5.tgz:typecheck=true
 - [x] idle-gap-softness: balanced:250=0.076,750=0.147 | fastFirst:250=0.075,750=0.147 | softFinish:250=0.076,750=0.147
 - [x] stress-tail-latency: balanced:482.5ms | fastFirst:418.3ms | softFinish:513.3ms
-- [x] client-update-density: balanced:77.1 | fastFirst:91.1 | softFinish:100.2
+- [x] client-update-density: balanced:91.4 | fastFirst:90.1 | softFinish:99.4
 
 ## Size
 
@@ -50,14 +50,14 @@
 
 | profile | notificationsPer1kCharsP95 | visibleUpdatesPer1kCharsP95 | firstVisibleLagP95 | completionLagP95 |
 | --- | --- | --- | --- | --- |
-| balanced | 453.45 | 77.14 | 0 | 89.8 |
-| fastFirst | 466.39 | 91.11 | 0 | 104.6 |
-| softFinish | 476.29 | 100.16 | 0 | 137.4 |
+| balanced | 467.42 | 91.42 | 0 | 77.8 |
+| fastFirst | 466.34 | 90.11 | 0 | 78.2 |
+| softFinish | 475.7 | 99.38 | 0 | 148.4 |
 
 ## Perf
 
 | profile | eventsPerSec | charsPerSec | samplesPerSec | usPerEvent | usPerFrame |
 | --- | --- | --- | --- | --- | --- |
-| balanced | 117073.9 | 2588081 | 566921 | 8.54 | 1.76 |
-| fastFirst | 130555.2 | 2886105 | 626753 | 7.66 | 1.6 |
-| softFinish | 132538.4 | 2929947 | 644395 | 7.54 | 1.55 |
+| balanced | 102651 | 2269243 | 497079 | 9.74 | 2.01 |
+| fastFirst | 102331.9 | 2262190 | 491262 | 9.77 | 2.04 |
+| softFinish | 109354.4 | 2417432 | 531676 | 9.14 | 1.88 |

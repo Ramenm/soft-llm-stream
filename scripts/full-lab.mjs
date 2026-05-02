@@ -29,7 +29,6 @@ import {
   smokeImportLeanCore,
   smokeInstallLeanTarball,
 } from './lib/lean-package.mjs';
-import { writeQualityCardFromSummary } from './lib/showcase-assets.mjs';
 
 const PROFILE_MAP = {
   balanced: DEFAULT_REVEAL_TUNING,
@@ -588,7 +587,6 @@ async function main() {
     path.join(reportsDir, 'full-lab-summary.md'),
     buildMarkdownReport(summary),
   );
-  writeQualityCardFromSummary(summary, path.resolve('docs/assets/quality-card.svg'));
 }
 
 await main();

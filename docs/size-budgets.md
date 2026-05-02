@@ -17,7 +17,7 @@ npm run size:check
 npm run pack:check
 ```
 
-`npm run lab:full` also refreshes `docs/assets/quality-card.svg`, so the README showcase card always tracks the latest full-lab report.
+`npm run lab:full` refreshes the JSON and Markdown summaries under `reports/`; the README keeps the visual pitch focused on the demo GIF plus the architecture overview.
 
 When local `terser` is unavailable, the repo now falls back to a checked-in lean-core artifact as long as its source hash still matches the current bundled runtime source. That keeps `lab:full`, `size:check`, and the release gate reproducible in a clean offline environment.
 

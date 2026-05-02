@@ -4,11 +4,7 @@ Small headless smoothing for bursty LLM text streams.
 
 `soft-llm-stream` sits between an incoming stream and the UI. It normalizes real provider output, keeps reveal speed perceptually steadier, preserves grapheme boundaries, stays soft after long gaps, and finishes without ugly tail snaps.
 
-![soft-llm-stream quality card](./docs/assets/quality-card.svg)
-
-[![soft-llm-stream browser demo recording](./docs/assets/demo-recording.gif)](./docs/assets/demo-recording.mp4)
-
-![raw stream compared with soft reveal](./docs/assets/demo-compare.svg)
+![soft-llm-stream browser demo recording](./docs/assets/demo-recording.gif)
 
 ![soft-llm-stream overview](./docs/assets/overview.svg)
 
@@ -192,11 +188,11 @@ Artifacts produced by the full lab:
 
 - `reports/full-lab-summary.json`
 - `reports/full-lab-summary.md`
-- `docs/assets/quality-card.svg`
+
+README showcase assets:
+
 - `docs/assets/demo-recording.gif`
-- `docs/assets/demo-recording.mp4`
-- `docs/assets/demo-recording-poster.jpg`
-- `docs/assets/demo-compare.svg`
+- `docs/assets/overview.svg`
 
 `npm run size:check` now validates the staged package three ways: it smoke-imports the staged core, installs the packed tarball into a clean temporary consumer for a tiny runtime flow, and runs a strict TypeScript compile against the packaged declarations.
 

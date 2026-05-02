@@ -15,7 +15,6 @@ npm run examples:smoke
 
 - `reports/full-lab-summary.json`
 - `reports/full-lab-summary.md`
-- `docs/assets/quality-card.svg`
 
 ## One-command showcase check
 

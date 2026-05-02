@@ -24,11 +24,7 @@
 
 ## Suggested assets for a README, post, or demo page
 
-- `docs/assets/quality-card.svg`
 - `docs/assets/demo-recording.gif`
-- `docs/assets/demo-recording.mp4`
-- `docs/assets/demo-recording-poster.jpg`
-- `docs/assets/demo-compare.svg`
 - `docs/assets/overview.svg`
 - `reports/full-lab-summary.md`
 
@@ -42,6 +38,9 @@ The recorder defaults to `--mode=client`, which uses `showcase-chat`: the best
 client-facing trace because it shows the real problem (chunky chat batches), the
 core value (smaller visible jumps), live metrics, and enough content to auto-scroll
 without turning into a synthetic stress test.
+
+By default the recorder writes only the README GIF; temporary encoder files stay
+under `.omx/recordings/` and are not part of the public showcase.
 
 Other useful recording modes:
 

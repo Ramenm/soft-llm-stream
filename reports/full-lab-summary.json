@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-02T10:35:26.494Z",
+  "generatedAt": "2026-05-02T10:50:20.555Z",
   "coverage": {
     "benchmark": {
       "traces": 19,
@@ -311,41 +311,41 @@
         "profile": "balanced",
         "traces": 3,
         "chars": 3209,
-        "notificationsPer1kCharsMean": 274.07624568616893,
-        "notificationsPer1kCharsP95": 453.4522586290583,
-        "visibleUpdatesPer1kCharsMean": 57.59970643218122,
-        "visibleUpdatesPer1kCharsP95": 77.13722038733877,
+        "notificationsPer1kCharsMean": 279.92055866449147,
+        "notificationsPer1kCharsP95": 467.41741118509935,
+        "visibleUpdatesPer1kCharsMean": 63.444019410503756,
+        "visibleUpdatesPer1kCharsP95": 91.41793217609649,
         "firstVisibleLagP95": 0,
-        "completionLagP95": 89.77131000000062
+        "completionLagP95": 77.83917999999957
       },
       {
         "profile": "fastFirst",
         "traces": 3,
         "chars": 3209,
-        "notificationsPer1kCharsMean": 279.9005796487782,
-        "notificationsPer1kCharsP95": 466.38870935361376,
-        "visibleUpdatesPer1kCharsMean": 63.424040394790445,
-        "visibleUpdatesPer1kCharsP95": 91.11147689395497,
+        "notificationsPer1kCharsMean": 280.8137579504061,
+        "notificationsPer1kCharsP95": 466.3350887788994,
+        "visibleUpdatesPer1kCharsMean": 64.33721869641842,
+        "visibleUpdatesPer1kCharsP95": 90.10988755024445,
         "firstVisibleLagP95": 0,
-        "completionLagP95": 104.62994000000144
+        "completionLagP95": 78.20960999999843
       },
       {
         "profile": "softFinish",
         "traces": 3,
         "chars": 3209,
-        "notificationsPer1kCharsMean": 285.4856154638122,
-        "notificationsPer1kCharsP95": 476.29487758329617,
-        "visibleUpdatesPer1kCharsMean": 69.0090762098245,
-        "visibleUpdatesPer1kCharsP95": 100.15994372465454,
+        "notificationsPer1kCharsMean": 284.9241039541768,
+        "notificationsPer1kCharsP95": 475.6995451992643,
+        "visibleUpdatesPer1kCharsMean": 68.44756470018909,
+        "visibleUpdatesPer1kCharsP95": 99.38450695754486,
         "firstVisibleLagP95": 0,
-        "completionLagP95": 137.43753000000362
+        "completionLagP95": 148.39879000000437
       }
     ]
   },
   "performance": {
     "rounds": 1,
     "frameMs": 16.666666666666668,
-    "heapDeltaMb": 6.883819580078125,
+    "heapDeltaMb": 7.0334930419921875,
     "rows": [
       {
         "profile": "balanced",
@@ -353,12 +353,12 @@
         "events": 1485,
         "chars": 32828,
         "samples": 7191,
-        "elapsedMs": 12.684300000000803,
-        "eventsPerSec": 117073.86296444469,
-        "charsPerSec": 2588081.328886728,
-        "samplesPerSec": 566921.3121732806,
-        "microsecondsPerEvent": 8.541616161616702,
-        "microsecondsPerFrame": 1.7639132248645255
+        "elapsedMs": 14.466499999994994,
+        "eventsPerSec": 102650.95219994566,
+        "charsPerSec": 2269242.7332119974,
+        "samplesPerSec": 497079.45944094897,
+        "microsecondsPerEvent": 9.741750841747471,
+        "microsecondsPerFrame": 2.011750799609928
       },
       {
         "profile": "fastFirst",
@@ -366,12 +366,12 @@
         "events": 1485,
         "chars": 32828,
         "samples": 7129,
-        "elapsedMs": 11.37449999999808,
-        "eventsPerSec": 130555.18923910949,
-        "charsPerSec": 2886104.8837316404,
-        "samplesPerSec": 626752.8243000751,
-        "microsecondsPerEvent": 7.659595959594666,
-        "microsecondsPerFrame": 1.5955253191188217
+        "elapsedMs": 14.511599999997998,
+        "eventsPerSec": 102331.92756141328,
+        "charsPerSec": 2262190.247802071,
+        "samplesPerSec": 491262.16268371395,
+        "microsecondsPerEvent": 9.772121212119863,
+        "microsecondsPerFrame": 2.0355730116423056
       },
       {
         "profile": "softFinish",
@@ -379,12 +379,12 @@
         "events": 1485,
         "chars": 32828,
         "samples": 7220,
-        "elapsedMs": 11.204299999997602,
-        "eventsPerSec": 132538.40043557543,
-        "charsPerSec": 2929946.5383832124,
-        "samplesPerSec": 644395.4553164005,
-        "microsecondsPerEvent": 7.54498316498155,
-        "microsecondsPerFrame": 1.5518421052628257
+        "elapsedMs": 13.579700000002049,
+        "eventsPerSec": 109354.40400007187,
+        "charsPerSec": 2417431.9020298715,
+        "samplesPerSec": 531675.9574952989,
+        "microsecondsPerEvent": 9.144579124580504,
+        "microsecondsPerFrame": 1.880844875346544
       }
     ]
   },
@@ -479,7 +479,7 @@
     {
       "name": "client-update-density",
       "ok": true,
-      "detail": "balanced:77.1 | fastFirst:91.1 | softFinish:100.2"
+      "detail": "balanced:91.4 | fastFirst:90.1 | softFinish:99.4"
     }
   ]
 }

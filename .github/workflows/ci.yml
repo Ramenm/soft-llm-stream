@@ -44,9 +44,5 @@ jobs:
           path: |
             reports/full-lab-summary.json
             reports/full-lab-summary.md
-            docs/assets/quality-card.svg
             docs/assets/demo-recording.gif
-            docs/assets/demo-recording.mp4
-            docs/assets/demo-recording-poster.jpg
-            docs/assets/demo-compare.svg
             docs/assets/overview.svg
