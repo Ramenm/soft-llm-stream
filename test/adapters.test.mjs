@@ -25,6 +25,35 @@ test("text adapter reconstructs plain streamed text", async () => {
   assert.equal(result.text, "Hello world");
 });
 
+test("SSE adapter normalizes legacy Chat Completions chunks with an optional usage trailer", async () => {
+  const events = [];
+  const store = createSoftLlmStream({
+    source: createIterable([
+      'data: {"id":"chatcmpl-1","object":"chat.completion.chunk","choices":[{"index":0,"delta":{"role":"assistant","content":"Hello"},"finish_reason":null}]}\n\n',
+      'data: {"id":"chatcmpl-1","object":"chat.completion.chunk","choices":[{"index":0,"delta":{"content":" there"},"finish_reason":null}]}\n\n',
+      'data: {"id":"chatcmpl-1","object":"chat.completion.chunk","choices":[],"usage":{"prompt_tokens":10,"completion_tokens":2,"total_tokens":12}}\n\n',
+      'data: [DONE]\n\n',
+    ]),
+    adapter: "sse",
+    reveal: false,
+    onEvent(event) {
+      events.push(event);
+    },
+  });
+
+  const result = await store.start();
+  assert.equal(result.text, "Hello there");
+  assert.equal(events.filter((event) => event.type === "done").length, 1);
+  assert.ok(
+    events.some(
+      (event) =>
+        event.type === "meta" &&
+        event.data.usage &&
+        event.data.usage.total_tokens === 12,
+    ),
+  );
+});
+
 test("SSE adapter does not duplicate finalized OpenAI Responses text", async () => {
   const events = [];
   const store = createSoftLlmStream({

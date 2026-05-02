@@ -3,7 +3,7 @@
 ## Best live-demo flow
 
 1. start the browser demo with `npm run demo:web`
-2. keep the default trace on `realistic-chat-short`
+2. keep the default trace on `showcase-chat`
 3. keep the default profile on `fastFirst`
 4. point out the summary strip before restarting the run
 5. restart once so viewers can watch both panes from the top
@@ -25,5 +25,35 @@
 ## Suggested assets for a README, post, or demo page
 
 - `docs/assets/quality-card.svg`
+- `docs/assets/demo-recording.gif`
+- `docs/assets/demo-recording.mp4`
+- `docs/assets/demo-recording-poster.jpg`
+- `docs/assets/demo-compare.svg`
 - `docs/assets/overview.svg`
 - `reports/full-lab-summary.md`
+
+Regenerate the live browser recording with:
+
+```bash
+npm run docs:record-demo
+```
+
+The recorder defaults to `--mode=client`, which uses `showcase-chat`: the best
+client-facing trace because it shows the real problem (chunky chat batches), the
+core value (smaller visible jumps), live metrics, and enough content to auto-scroll
+without turning into a synthetic stress test.
+
+Other useful recording modes:
+
+- `--mode=client` — best README/client asset; short chat, readable copy, clear metrics.
+- `--mode=scroll` — long-output proof; use when you need to show internal pane scrolling.
+- `--mode=gap` — tool-call stall proof; use when you want the freeze/recovery story.
+- `--mode=slow` — slow real-chat proof; use for painful 3-7 second frontend waits.
+
+Override it when needed, for example:
+
+```bash
+npm run docs:record-demo -- --mode=scroll
+npm run docs:record-demo -- --mode=gap
+npm run docs:record-demo -- --trace=realistic-chat-short --duration-ms=16000
+```

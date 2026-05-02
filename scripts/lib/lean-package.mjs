@@ -7,6 +7,12 @@ import { createHash } from "node:crypto";
 import { createRequire } from "node:module";
 import { gzipSync } from "node:zlib";
 
+import {
+  resolveNpmInvocation,
+  resolveTypeScriptInvocation,
+  shouldUseShellForCommand,
+} from "./tooling.mjs";
+
 const require = createRequire(import.meta.url);
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
@@ -343,10 +349,11 @@ export function packLeanPackage({ dryRun = true, cwd = REPO_ROOT } = {}) {
 
   args.push("--json", "--ignore-scripts", STAGE_DIR);
 
-  const result = spawnSync("npm", args, {
+  const npmCli = resolveNpmInvocation();
+  const result = spawnSync(npmCli.command, [...npmCli.args, ...args], {
     cwd,
     encoding: "utf8",
-    shell: process.platform === "win32",
+    shell: shouldUseShellForCommand(npmCli.command),
   });
 
   if (result.error) {
@@ -379,17 +386,6 @@ export function assertLeanBudgets(packInfo, metrics = getLeanPackageMetrics()) {
   }
 }
 
-function resolveTypeScriptCommand() {
-  const localTsc = path.join(
-    REPO_ROOT,
-    "node_modules",
-    ".bin",
-    process.platform === "win32" ? "tsc.cmd" : "tsc",
-  );
-
-  return fs.existsSync(localTsc) ? localTsc : "tsc";
-}
-
 async function smokeImportCoreFrom(stageDistDir) {
   const modulePath = path.join(stageDistDir, "core.js");
   const core = await import(pathToFileURL(modulePath).href);
@@ -415,14 +411,15 @@ async function smokeImportCoreFrom(stageDistDir) {
 }
 
 function runCommand(command, args, { cwd, env } = {}) {
-  const result = spawnSync(resolveExecutable(command), args, {
+  const executable = resolveExecutable(command);
+  const result = spawnSync(executable, args, {
     cwd,
     env: {
       ...process.env,
       ...(env ?? {}),
     },
     encoding: "utf8",
-    shell: process.platform === "win32" && command !== "node",
+    shell: shouldUseShellForCommand(executable),
   });
 
   if (result.error) {
@@ -454,9 +451,17 @@ export async function smokeInstallLeanTarball() {
     const packInfo = packLeanPackage({ dryRun: false, cwd: tempRoot });
     const tarballPath = path.join(tempRoot, packInfo.filename);
 
+    const npmCli = resolveNpmInvocation();
     runCommand(
-      "npm",
-      ["install", "--silent", "--ignore-scripts", "--no-package-lock", tarballPath],
+      npmCli.command,
+      [
+        ...npmCli.args,
+        "install",
+        "--silent",
+        "--ignore-scripts",
+        "--no-package-lock",
+        tarballPath,
+      ],
       { cwd: consumerDir },
     );
 
@@ -507,7 +512,10 @@ export async function smokeInstallLeanTarball() {
       ),
     );
 
-    runCommand(resolveTypeScriptCommand(), ["-p", "tsconfig.json"], { cwd: consumerDir });
+    const typeScriptCli = resolveTypeScriptInvocation({ repoRoot: REPO_ROOT });
+    runCommand(typeScriptCli.command, [...typeScriptCli.args, "-p", "tsconfig.json"], {
+      cwd: consumerDir,
+    });
 
     return {
       ...parsed,

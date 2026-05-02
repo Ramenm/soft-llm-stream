@@ -25,6 +25,10 @@ npm run showcase:check
 
 That covers typecheck, tests, protocol validation, the full lab, executable examples, and size budgets.
 
+## Integration coverage
+
+Provider and transport compatibility that is explicitly checked in this revision lives in [`docs/integrations.md`](./integrations.md).
+
 ## Focused delayed-gap check
 
 Use this when you touch reveal pacing and want one targeted repro in addition to the full lab:

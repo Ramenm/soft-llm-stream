@@ -68,6 +68,7 @@
     "lab:protocol": "npm run build --silent && node ./scripts/protocol-compat-lab.mjs",
     "lab:full": "npm run build --silent && node ./scripts/full-lab.mjs",
     "docs:quality-card": "node ./scripts/render-quality-card.mjs",
+    "docs:record-demo": "node ./scripts/record-demo.mjs",
     "examples:smoke": "npm run build --silent && node ./scripts/smoke-examples.mjs",
     "showcase:check": "npm run typecheck --silent && npm test --silent && npm run lab:protocol --silent && npm run lab:full --silent && npm run examples:smoke --silent && npm run size:check --silent",
     "lab:all": "npm run lab:full --silent",

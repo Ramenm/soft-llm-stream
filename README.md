@@ -6,6 +6,10 @@ Small headless smoothing for bursty LLM text streams.
 
 ![soft-llm-stream quality card](./docs/assets/quality-card.svg)
 
+[![soft-llm-stream browser demo recording](./docs/assets/demo-recording.gif)](./docs/assets/demo-recording.mp4)
+
+![raw stream compared with soft reveal](./docs/assets/demo-compare.svg)
+
 ![soft-llm-stream overview](./docs/assets/overview.svg)
 
 ## Why this exists
@@ -22,6 +26,7 @@ Most chat UIs still have the same three failure modes:
 
 - headless runtime with no framework lock-in
 - works with raw text, SSE, JSONL / NDJSON, and normalized event streams
+- explicitly covered for OpenAI Responses, legacy Chat Completions, Anthropic Messages, and AI SDK streams
 - preserves grapheme-safe reveal boundaries
 - designed for browser apps, CLI tools, and SDK wrappers
 - validated with protocol tests, synthetic labs, stress traces, size budgets, and release gates
@@ -39,7 +44,7 @@ The **published artifact** is intentionally core-only:
 Current confirmed size targets in this revision:
 
 - staged core runtime gzip: **9736 B**
-- staged npm tarball: **10054 B**
+- staged npm tarball: **11348 B**
 
 ## Install
 
@@ -150,6 +155,16 @@ The demo now includes a live summary strip for:
 
 That makes the page much easier to show in a meeting or record for a showcase clip.
 
+To regenerate the README clip, use the client-facing recorder mode:
+
+```bash
+npm run docs:record-demo
+```
+
+The recorder also supports `--mode=scroll`, `--mode=gap`, and `--mode=slow`
+when you want to prove long-output scrolling, tool-call stalls, or slower
+real-chat waits.
+
 ## Quick check from this archive
 
 This archive already includes `dist/` and the lean-package fallback artifact, so the fastest validation path works without installing dependencies:
@@ -178,6 +193,10 @@ Artifacts produced by the full lab:
 - `reports/full-lab-summary.json`
 - `reports/full-lab-summary.md`
 - `docs/assets/quality-card.svg`
+- `docs/assets/demo-recording.gif`
+- `docs/assets/demo-recording.mp4`
+- `docs/assets/demo-recording-poster.jpg`
+- `docs/assets/demo-compare.svg`
 
 `npm run size:check` now validates the staged package three ways: it smoke-imports the staged core, installs the packed tarball into a clean temporary consumer for a tiny runtime flow, and runs a strict TypeScript compile against the packaged declarations.
 
@@ -185,6 +204,7 @@ Artifacts produced by the full lab:
 
 - [`examples/`](./examples/README.md) — executable usage samples
 - [`docs/showcase.md`](./docs/showcase.md) — short live-demo flow and talking points
+- [`docs/integrations.md`](./docs/integrations.md) — provider and transport compatibility map
 - [`docs/README.md`](./docs/README.md) — setup and validation notes
 - [`docs/evals.md`](./docs/evals.md) — benchmark philosophy and thresholds
 - [`docs/size-budgets.md`](./docs/size-budgets.md) — publish-size constraints

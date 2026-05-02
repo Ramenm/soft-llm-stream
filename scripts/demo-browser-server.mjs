@@ -11,21 +11,41 @@ const host = "127.0.0.1";
 
 const MIME_TYPES = {
   ".css": "text/css; charset=utf-8",
+  ".gif": "image/gif",
   ".html": "text/html; charset=utf-8",
+  ".jpeg": "image/jpeg",
+  ".jpg": "image/jpeg",
   ".js": "text/javascript; charset=utf-8",
   ".mjs": "text/javascript; charset=utf-8",
+  ".mp4": "video/mp4",
   ".json": "application/json; charset=utf-8",
   ".map": "application/json; charset=utf-8",
   ".svg": "image/svg+xml",
   ".txt": "text/plain; charset=utf-8",
 };
 
+function isPathInsideRoot(absolutePath) {
+  const relativePath = path.relative(rootDir, absolutePath);
+
+  return (
+    relativePath === "" ||
+    (!relativePath.startsWith("..") && !path.isAbsolute(relativePath))
+  );
+}
+
 function resolvePath(urlPath) {
-  const cleanPath = decodeURIComponent(urlPath.split("?")[0]);
+  let cleanPath;
+
+  try {
+    cleanPath = decodeURIComponent(urlPath.split("?")[0]);
+  } catch {
+    return null;
+  }
+
   const relativePath = cleanPath === "/" ? "/index.html" : cleanPath;
   const absolutePath = path.resolve(rootDir, `.${relativePath}`);
 
-  if (!absolutePath.startsWith(rootDir)) {
+  if (!isPathInsideRoot(absolutePath)) {
     return null;
   }
 

@@ -1,7 +1,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import fs from "node:fs";
 
 import { getBrowserDemoTraces } from "../demo-traces.js";
+
+const MAIN_JS = fs.readFileSync(new URL("../main.js", import.meta.url), "utf8");
 
 function assertBatchTrace(trace, { expectedEvents, minDelayMs, maxDelayMs, descriptionPattern }) {
   assert.ok(trace, "expected trace to be present");
@@ -26,6 +29,26 @@ test("browser demo includes a realistic chat trace with five long batches", () =
     maxDelayMs: 15000,
     descriptionPattern: /5-15 second pauses/i,
   });
+});
+
+test("browser demo includes a client-facing showcase trace for recordings", () => {
+  const traces = getBrowserDemoTraces();
+  const showcaseTrace = traces.find((trace) => trace.name === "showcase-chat");
+
+  assertBatchTrace(showcaseTrace, {
+    expectedEvents: 10,
+    minDelayMs: 600,
+    maxDelayMs: 3500,
+    descriptionPattern: /client-facing product demo/i,
+  });
+  assert.ok(
+    showcaseTrace.stats.totalChars > 1500,
+    "showcase-chat should be long enough to exercise the recording scroll area",
+  );
+});
+
+test("browser demo defaults to the client-facing showcase trace", () => {
+  assert.match(MAIN_JS, /DEFAULT_TRACE_NAME = "showcase-chat"/);
 });
 
 test("browser demo exposes additional realistic trace variants for shorter, slower, and tool-gap scenarios", () => {

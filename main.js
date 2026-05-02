@@ -38,7 +38,7 @@ const summaryUpdatesNote = document.querySelector("#summary-updates-note");
 const summaryDoneValue = document.querySelector("#summary-done-value");
 const summaryDoneNote = document.querySelector("#summary-done-note");
 
-const DEFAULT_TRACE_NAME = "realistic-chat-short";
+const DEFAULT_TRACE_NAME = "showcase-chat";
 const DEFAULT_REVEAL_PROFILE = "fastFirst";
 
 const rawAutoFollow = createAutoFollowState();

@@ -252,8 +252,75 @@ const toolCallGapTrace = {
     "Fast opening batches, one long tool call stall, then a catch-up burst — useful when you want a tool call style gap in the middle of the stream.",
 };
 
+const showcaseChatEvents = [
+  {
+    delayMs: 600,
+    text:
+      "Imagine this is the visible answer in a customer chat. The backend is already working, but the frontend only receives chunky batches instead of a perfect token faucet.\n\nThe raw UI on the left will wait, then suddenly add a block of confirmed text.",
+  },
+  {
+    delayMs: 1400,
+    text:
+      "\n\nRaw delivery makes those batches feel like little jumps: silence, then a paragraph appears; another pause, then a list item lands all at once.\n\nThat stop-and-dump rhythm is the exact reading problem this package is built to soften.",
+  },
+  {
+    delayMs: 2600,
+    text:
+      "\n\nsoft-llm-stream sits between the transport and your UI. It accepts the same chunks, preserves grapheme boundaries, and reveals text at a steadier pace without pretending the model has produced content it has not actually received.\n\nNo fake tokens. No provider lock-in.",
+  },
+  {
+    delayMs: 800,
+    text:
+      "\n\nThe important part is that the right pane is using the same source events as the raw pane. The only difference is presentation control: how much confirmed backlog becomes visible each frame.\n\nThat makes the comparison honest.",
+  },
+  {
+    delayMs: 3500,
+    text:
+      "\n\nNow watch the useful failure case: a bigger batch arrives after a gap. Raw output jumps, while the smoothed output catches up in smaller readable slices.\n\nThe reader keeps a sense of motion and does not have to re-scan a suddenly changed block.",
+  },
+  {
+    delayMs: 900,
+    text:
+      "\n\nFor product teams, the tradeoff is practical:\n- keep first text fast\n- avoid huge visible dumps\n- stay close to raw completion time\n- make long answers feel calmer without hiding real latency",
+  },
+  {
+    delayMs: 1500,
+    text:
+      "\n\nFor engineers, the integration stays headless. Bind the store to React, DOM, a terminal, or another renderer, and keep provider-specific parsing outside the reveal controller.\n\nThat is why this package is a runtime primitive, not a chat UI kit.",
+  },
+  {
+    delayMs: 800,
+    text:
+      "\n\nThe metrics above are there so the demo is not just vibes:\n- largest jump = how much text appears at once\n- longest freeze = visible stalls between updates\n- visible updates = how often the reader sees progress\n- done delta = smoothing overhead at the end",
+  },
+  {
+    delayMs: 1300,
+    text:
+      "\n\nThis is why the library is useful for real LLM apps. It does not change the answer; it changes the rhythm of confirmed text so bursty streams feel calmer, easier to read, and less broken during backend gaps.",
+  },
+  {
+    delayMs: 900,
+    text:
+      "\n\nEnd result: the left side demonstrates the default stop-and-dump experience, while the right side shows the same answer arriving with smoother visual motion, live proof metrics, internal scrolling, and a cleaner finish.",
+  },
+];
+
+const showcaseChatTrace = {
+  name: "showcase-chat",
+  seed: 913,
+  text: showcaseChatEvents.map((event) => event.text).join(""),
+  events: showcaseChatEvents,
+  description:
+    "Client-facing product demo: short realistic chat answer with chunky batches, one visible gap, live metrics, and enough text to show auto-scroll.",
+};
+
 export function getBrowserDemoTraces() {
   return [
+    createDemoTrace({
+      trace: showcaseChatTrace,
+      name: showcaseChatTrace.name,
+      description: showcaseChatTrace.description,
+    }),
     createDemoTrace({
       preset: "llm-bursty",
       name: "llm-answer",

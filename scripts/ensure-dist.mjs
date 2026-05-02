@@ -3,6 +3,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawn } from "node:child_process";
 
+import { resolveTypeScriptInvocation, shouldUseShellForCommand } from "./lib/tooling.mjs";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, "..");
@@ -22,7 +24,7 @@ async function run(command, args, options = {}) {
     const child = spawn(command, args, {
       cwd: rootDir,
       stdio: "inherit",
-      shell: process.platform === "win32",
+      shell: shouldUseShellForCommand(command),
       ...options,
     });
 
@@ -52,10 +54,8 @@ try {
   ]);
 } catch (error) {
   console.warn("npm build failed; trying direct TypeScript build as a fallback");
-  await run(process.platform === "win32" ? "tsc.cmd" : "tsc", [
-    "-p",
-    "tsconfig.build.json",
-  ]);
+  const typeScriptCli = resolveTypeScriptInvocation({ repoRoot: rootDir });
+  await run(typeScriptCli.command, [...typeScriptCli.args, "-p", "tsconfig.build.json"]);
 }
 
 if (!(await exists(distEntry))) {

@@ -1,5 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
+import http from "node:http";
 import { spawn } from "node:child_process";
 import { setTimeout as delay } from "node:timers/promises";
 
@@ -24,6 +27,32 @@ async function waitForServer(url, timeoutMs = 5000) {
   }
 
   throw new Error(`Timed out waiting for demo server at ${url}`);
+}
+
+function requestRawPath(rawPath) {
+  return new Promise((resolve, reject) => {
+    const request = http.request(
+      {
+        host: HOST,
+        port: PORT,
+        method: "GET",
+        path: rawPath,
+      },
+      (response) => {
+        const chunks = [];
+        response.on("data", (chunk) => chunks.push(Buffer.from(chunk)));
+        response.on("end", () => {
+          resolve({
+            status: response.statusCode ?? 0,
+            body: Buffer.concat(chunks).toString("utf8"),
+          });
+        });
+      },
+    );
+
+    request.once("error", reject);
+    request.end();
+  });
 }
 
 test("demo server serves browser helper .mjs files as JavaScript modules", async () => {
@@ -68,4 +97,40 @@ test("demo server serves browser helper .mjs files as JavaScript modules", async
   }
 
   assert.equal(stderr.join(""), "");
+});
+
+test("demo server rejects traversal attempts that escape the repo root through same-prefix sibling paths", async () => {
+  const repoRoot = process.cwd();
+  const siblingRoot = fs.mkdtempSync(
+    path.join(path.dirname(repoRoot), `${path.basename(repoRoot)}-sibling-`),
+  );
+  const leakedFilePath = path.join(siblingRoot, "secret.txt");
+  fs.writeFileSync(leakedFilePath, "outside root");
+
+  const child = spawn(process.execPath, ["./scripts/demo-browser-server.mjs"], {
+    cwd: repoRoot,
+    env: {
+      ...process.env,
+      PORT: String(PORT),
+    },
+    stdio: ["ignore", "pipe", "pipe"],
+  });
+
+  try {
+    await waitForServer(`${BASE_URL}/`);
+
+    const response = await requestRawPath(
+      `/%2e%2e/${encodeURIComponent(path.basename(siblingRoot))}/secret.txt`,
+    );
+
+    assert.equal(response.status, 403);
+    assert.equal(response.body, "Forbidden");
+  } finally {
+    child.kill("SIGTERM");
+    await Promise.race([
+      new Promise((resolve) => child.once("exit", resolve)),
+      delay(3000),
+    ]);
+    fs.rmSync(siblingRoot, { recursive: true, force: true });
+  }
 });

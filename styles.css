@@ -33,6 +33,11 @@ body {
   padding: 20px 16px 32px;
 }
 
+body[data-recording="true"] {
+  padding: 10px;
+  overflow: hidden;
+}
+
 code,
 pre {
   font-family:
@@ -45,12 +50,32 @@ pre {
   margin: 0 auto;
 }
 
+body[data-recording="true"] .page {
+  width: min(1360px, 100%);
+}
+
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.9fr);
   gap: 18px;
   align-items: start;
   margin-bottom: 18px;
+}
+
+body[data-recording="true"] .hero {
+  display: block;
+  margin-bottom: 10px;
+}
+
+body[data-recording="true"] .hero-copy {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.1fr);
+  gap: 18px;
+  align-items: end;
+}
+
+body[data-recording="true"] .hero-card {
+  display: none;
 }
 
 .eyebrow,
@@ -77,11 +102,22 @@ h1 {
   margin-bottom: 12px;
 }
 
+body[data-recording="true"] h1 {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  margin-bottom: 0;
+}
+
 .lede {
   font-size: 1rem;
   line-height: 1.6;
   color: var(--muted);
   max-width: 58ch;
+}
+
+body[data-recording="true"] .lede {
+  max-width: none;
+  font-size: 0.92rem;
+  line-height: 1.45;
 }
 
 .hero-card {
@@ -200,6 +236,14 @@ h1 {
   margin-bottom: 16px;
 }
 
+body[data-recording="true"] .experience-strip {
+  position: sticky;
+  top: 8px;
+  z-index: 20;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
 .experience-card {
   padding: 18px;
   background: linear-gradient(180deg, rgba(16, 23, 34, 0.96), rgba(13, 19, 28, 0.96));
@@ -208,10 +252,23 @@ h1 {
   box-shadow: var(--shadow);
 }
 
+body[data-recording="true"] .experience-card {
+  padding: 10px 12px;
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(16, 23, 34, 0.98), rgba(13, 19, 28, 0.98));
+  backdrop-filter: blur(18px);
+}
+
 .experience-card h2 {
   margin: 0 0 8px;
   font-size: clamp(1.35rem, 2vw, 2rem);
   letter-spacing: -0.04em;
+}
+
+body[data-recording="true"] .experience-card h2 {
+  margin-bottom: 4px;
+  font-size: clamp(1.05rem, 1.7vw, 1.45rem);
 }
 
 .experience-note {
@@ -220,10 +277,34 @@ h1 {
   line-height: 1.45;
 }
 
+body[data-recording="true"] .experience-note {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.78rem;
+  line-height: 1.25;
+}
+
+body[data-recording="true"] .lane-label {
+  margin-bottom: 5px;
+  font-size: 10px;
+}
+
+body[data-recording="true"] .controls,
+body[data-recording="true"] .trace-profile,
+body[data-recording="true"] .notes {
+  display: none;
+}
+
 .compare {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-bottom: 16px;
   align-items: stretch;
+}
+
+body[data-recording="true"] .compare {
+  gap: 10px;
+  margin-bottom: 0;
 }
 
 .lane,
@@ -242,6 +323,15 @@ h1 {
   min-height: clamp(420px, 56svh, 720px);
 }
 
+body[data-recording="true"] .lane {
+  grid-template-rows: auto auto minmax(0, 1fr);
+  gap: 8px;
+  min-height: calc(100svh - 270px);
+  max-height: calc(100svh - 270px);
+  padding: 12px;
+  border-radius: 20px;
+}
+
 .lane-accent {
   border-color: rgba(123, 223, 246, 0.28);
 }
@@ -258,6 +348,10 @@ h1 {
   letter-spacing: -0.03em;
 }
 
+body[data-recording="true"] .lane-head h2 {
+  font-size: 1.08rem;
+}
+
 .status {
   min-width: 88px;
   text-align: center;
@@ -268,6 +362,12 @@ h1 {
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-size: 11px;
+}
+
+body[data-recording="true"] .status {
+  min-width: 76px;
+  padding: 6px 10px;
+  font-size: 10px;
 }
 
 .status[data-state="streaming"],
@@ -292,11 +392,21 @@ h1 {
   gap: 8px 16px;
 }
 
+body[data-recording="true"] .metrics {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 5px 12px;
+}
+
 .metric {
   display: grid;
   gap: 3px;
   padding-bottom: 10px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+body[data-recording="true"] .metric {
+  gap: 1px;
+  padding-bottom: 5px;
 }
 
 .metric dt {
@@ -306,9 +416,17 @@ h1 {
   letter-spacing: 0.08em;
 }
 
+body[data-recording="true"] .metric dt {
+  font-size: 9px;
+}
+
 .metric dd {
   margin: 0;
   font-size: 1rem;
+}
+
+body[data-recording="true"] .metric dd {
+  font-size: 0.9rem;
 }
 
 .lane-hint {
@@ -323,6 +441,10 @@ h1 {
   align-items: start;
   justify-content: space-between;
   gap: 12px;
+}
+
+body[data-recording="true"] .lane-toolbar {
+  display: none;
 }
 
 .follow-button {
@@ -366,6 +488,13 @@ h1 {
   line-height: 1.65;
   overscroll-behavior: contain;
   scrollbar-gutter: stable;
+}
+
+body[data-recording="true"] .output {
+  min-height: 0;
+  padding: 12px 14px;
+  font-size: 14px;
+  line-height: 1.52;
 }
 
 .notes {

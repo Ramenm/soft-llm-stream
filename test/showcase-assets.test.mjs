@@ -29,7 +29,7 @@ test('quality card renderer includes the main showcase metrics', () => {
 
   assert.match(svg, /soft-llm-stream/);
   assert.match(svg, /fastFirst/);
-  assert.match(svg, /9736 B/);
-  assert.match(svg, /0.075 \/ 0.147/);
-  assert.match(svg, /418.3 ms/);
+  assert.match(svg, /9736 bytes/);
+  assert.match(svg, /0.075 → 0.147/);
+  assert.match(svg, /418 ms/);
 });

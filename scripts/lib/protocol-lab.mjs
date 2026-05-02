@@ -24,6 +24,18 @@ export const PROTOCOL_SCENARIOS = [
       ]),
   },
   {
+    name: 'openai-chat-completions-sse',
+    adapter: 'sse',
+    expectedText: 'Hello there',
+    source: () =>
+      createIterable([
+        'data: {"id":"chatcmpl-1","object":"chat.completion.chunk","choices":[{"index":0,"delta":{"role":"assistant","content":"Hello"},"finish_reason":null}]}\n\n',
+        'data: {"id":"chatcmpl-1","object":"chat.completion.chunk","choices":[{"index":0,"delta":{"content":" there"},"finish_reason":null}]}\n\n',
+        'data: {"id":"chatcmpl-1","object":"chat.completion.chunk","choices":[],"usage":{"prompt_tokens":10,"completion_tokens":2,"total_tokens":12}}\n\n',
+        'data: [DONE]\n\n',
+      ]),
+  },
+  {
     name: 'anthropic-messages-sse',
     adapter: 'sse',
     expectedText: 'Hello there',

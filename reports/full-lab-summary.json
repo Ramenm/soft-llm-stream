@@ -1,0 +1,485 @@
+{
+  "generatedAt": "2026-05-02T10:35:26.494Z",
+  "coverage": {
+    "benchmark": {
+      "traces": 19,
+      "charsMean": 2067.5263157894738,
+      "charsP95": 10665,
+      "chunkCountMean": 30.842105263157894,
+      "meanChunkCharsMean": 29.213556474309893,
+      "p90ChunkCharsP95": 162.21999999999989,
+      "durationMsP95": 8544.3
+    },
+    "stress": {
+      "traces": 24,
+      "charsMean": 3904.3333333333335,
+      "charsP95": 10665,
+      "chunkCountMean": 270.125,
+      "meanChunkCharsMean": 38.57109074365301,
+      "p90ChunkCharsP95": 180.00999999999993,
+      "durationMsP95": 25899.5
+    },
+    "long": {
+      "traces": 5,
+      "charsMean": 8860.8,
+      "charsP95": 10665,
+      "chunkCountMean": 86.6,
+      "meanChunkCharsMean": 104.65763937019918,
+      "p90ChunkCharsP95": 196.2,
+      "durationMsP95": 9023.6
+    },
+    "idle": {
+      "traces": 4,
+      "charsMean": 109358,
+      "charsP95": 118763,
+      "chunkCountMean": 981.25,
+      "meanChunkCharsMean": 119.05940580337021,
+      "p90ChunkCharsP95": 304.4799999999999,
+      "durationMsP95": 2857336.05,
+      "frameMs": 250
+    }
+  },
+  "protocol": {
+    "rows": [
+      {
+        "scenario": "openai-responses-sse",
+        "adapter": "sse",
+        "status": "done",
+        "textLength": 5,
+        "doneCount": 1,
+        "ok": true
+      },
+      {
+        "scenario": "openai-chat-completions-sse",
+        "adapter": "sse",
+        "status": "done",
+        "textLength": 11,
+        "doneCount": 1,
+        "ok": true
+      },
+      {
+        "scenario": "anthropic-messages-sse",
+        "adapter": "sse",
+        "status": "done",
+        "textLength": 11,
+        "doneCount": 1,
+        "ok": true
+      },
+      {
+        "scenario": "ai-sdk-ui-sse",
+        "adapter": "sse",
+        "status": "done",
+        "textLength": 11,
+        "doneCount": 1,
+        "ok": true
+      },
+      {
+        "scenario": "normalized-jsonl-replace",
+        "adapter": "jsonl",
+        "status": "done",
+        "textLength": 11,
+        "doneCount": 1,
+        "ok": true
+      },
+      {
+        "scenario": "sse-control-fields",
+        "adapter": "sse",
+        "status": "done",
+        "textLength": 5,
+        "doneCount": 1,
+        "ok": true
+      },
+      {
+        "scenario": "fragmented-sse-auto",
+        "adapter": "auto",
+        "status": "done",
+        "textLength": 5,
+        "doneCount": 1,
+        "ok": true
+      },
+      {
+        "scenario": "fragmented-jsonl-auto",
+        "adapter": "auto",
+        "status": "done",
+        "textLength": 11,
+        "doneCount": 1,
+        "ok": true
+      },
+      {
+        "scenario": "object-event-stream-auto",
+        "adapter": "auto",
+        "status": "done",
+        "textLength": 11,
+        "doneCount": 1,
+        "ok": true
+      }
+    ],
+    "passes": 9,
+    "failures": 0
+  },
+  "benchmarkProfiles": [
+    {
+      "profile": "balanced",
+      "traces": 19,
+      "velocityCvMean": 0.5194702644432125,
+      "velocityCvP95": 0.9326029918043567,
+      "completionSnapP95": 6.526854219948774,
+      "completionLagP95": 389.99999999999983,
+      "firstVisibleLagP95": 0,
+      "maxAvoidableStallP95": 50.00000000000002,
+      "bandCoverageMean": 0.8753782425805716,
+      "delayedCases": 0,
+      "firstJumpShareP95": 0,
+      "firstThreeJumpShareP95": 0
+    },
+    {
+      "profile": "fastFirst",
+      "traces": 19,
+      "velocityCvMean": 0.5284452181574489,
+      "velocityCvP95": 0.9330246813365138,
+      "completionSnapP95": 6.49176470588232,
+      "completionLagP95": 381.6666666666665,
+      "firstVisibleLagP95": 0,
+      "maxAvoidableStallP95": 50.00000000000002,
+      "bandCoverageMean": 0.883051796087781,
+      "delayedCases": 0,
+      "firstJumpShareP95": 0,
+      "firstThreeJumpShareP95": 0
+    },
+    {
+      "profile": "softFinish",
+      "traces": 19,
+      "velocityCvMean": 0.5061179150271097,
+      "velocityCvP95": 0.8961969199549609,
+      "completionSnapP95": 6.565984654731382,
+      "completionLagP95": 419.99999999999983,
+      "firstVisibleLagP95": 0,
+      "maxAvoidableStallP95": 50.00000000000002,
+      "bandCoverageMean": 0.8796119983440779,
+      "delayedCases": 0,
+      "firstJumpShareP95": 0,
+      "firstThreeJumpShareP95": 0
+    }
+  ],
+  "stressProfiles": [
+    {
+      "profile": "balanced",
+      "traces": 24,
+      "velocityCvMean": 0.46464786889212556,
+      "velocityCvP95": 0.9572068365158999,
+      "completionSnapP95": 5.845652173912925,
+      "completionLagP95": 482.5000000000054,
+      "firstVisibleLagP95": 0,
+      "maxAvoidableStallP95": 47.50000000000033,
+      "bandCoverageMean": 0.8095801842378468,
+      "delayedCases": 0,
+      "firstJumpShareP95": 0,
+      "firstThreeJumpShareP95": 0
+    },
+    {
+      "profile": "fastFirst",
+      "traces": 24,
+      "velocityCvMean": 0.47099638045492437,
+      "velocityCvP95": 0.9330370344478448,
+      "completionSnapP95": 5.719999999999993,
+      "completionLagP95": 418.33333333333803,
+      "firstVisibleLagP95": 0,
+      "maxAvoidableStallP95": 47.50000000000033,
+      "bandCoverageMean": 0.8302708380442567,
+      "delayedCases": 0,
+      "firstJumpShareP95": 0,
+      "firstThreeJumpShareP95": 0
+    },
+    {
+      "profile": "softFinish",
+      "traces": 24,
+      "velocityCvMean": 0.4624917554923364,
+      "velocityCvP95": 0.9405642481362564,
+      "completionSnapP95": 5.808695652173832,
+      "completionLagP95": 513.3333333333392,
+      "firstVisibleLagP95": 0,
+      "maxAvoidableStallP95": 47.50000000000033,
+      "bandCoverageMean": 0.8186149726659394,
+      "delayedCases": 0,
+      "firstJumpShareP95": 0,
+      "firstThreeJumpShareP95": 0
+    }
+  ],
+  "longProfiles": [
+    {
+      "profile": "balanced",
+      "traces": 5,
+      "velocityCvMean": 0.6546091453098123,
+      "velocityCvP95": 1.0079337852255261,
+      "completionSnapP95": 8.9942028985509,
+      "completionLagP95": 543.3333333333412,
+      "firstVisibleLagP95": 0,
+      "maxAvoidableStallP95": 0,
+      "bandCoverageMean": 0.46333002619107705,
+      "delayedCases": 0,
+      "firstJumpShareP95": 0,
+      "firstThreeJumpShareP95": 0
+    },
+    {
+      "profile": "fastFirst",
+      "traces": 5,
+      "velocityCvMean": 0.6613599840962369,
+      "velocityCvP95": 0.9847173191040506,
+      "completionSnapP95": 8.948000000000299,
+      "completionLagP95": 476.66666666667356,
+      "firstVisibleLagP95": 0,
+      "maxAvoidableStallP95": 0,
+      "bandCoverageMean": 0.4670370771907944,
+      "delayedCases": 0,
+      "firstJumpShareP95": 0,
+      "firstThreeJumpShareP95": 0
+    },
+    {
+      "profile": "softFinish",
+      "traces": 5,
+      "velocityCvMean": 0.6305046618578726,
+      "velocityCvP95": 0.9904537585713492,
+      "completionSnapP95": 7.819565217391627,
+      "completionLagP95": 546.6666666666747,
+      "firstVisibleLagP95": 0,
+      "maxAvoidableStallP95": 0,
+      "bandCoverageMean": 0.4810187385857684,
+      "delayedCases": 0,
+      "firstJumpShareP95": 0,
+      "firstThreeJumpShareP95": 0
+    }
+  ],
+  "idleProfiles": [
+    {
+      "profile": "balanced",
+      "traces": 4,
+      "velocityCvMean": 1.1490389583180298,
+      "velocityCvP95": 1.7742206989206766,
+      "completionSnapP95": 43.019298245614024,
+      "completionLagP95": 2062.4999999999995,
+      "firstVisibleLagP95": 0,
+      "maxAvoidableStallP95": 0,
+      "bandCoverageMean": 0.06495148003995845,
+      "delayedCases": 7,
+      "firstJumpShareP95": 0.03672527158376215,
+      "firstThreeJumpShareP95": 0.10075471698113206,
+      "shareAfter250MsP95": 0.07575757575757576,
+      "shareAfter750MsP95": 0.1471698113207547,
+      "shareAfter750MsMin": 0.1471698113207547
+    },
+    {
+      "profile": "fastFirst",
+      "traces": 4,
+      "velocityCvMean": 1.1766186623375652,
+      "velocityCvP95": 1.7970283466194996,
+      "completionSnapP95": 38.92815789473683,
+      "completionLagP95": 1849.9999999999995,
+      "firstVisibleLagP95": 0,
+      "maxAvoidableStallP95": 0,
+      "bandCoverageMean": 0.06245218586296344,
+      "delayedCases": 8,
+      "firstJumpShareP95": 0.036132829755278734,
+      "firstThreeJumpShareP95": 0.10764373792898528,
+      "shareAfter250MsP95": 0.07459436888570747,
+      "shareAfter750MsP95": 0.1471698113207547,
+      "shareAfter750MsMin": 0.1471698113207547
+    },
+    {
+      "profile": "softFinish",
+      "traces": 4,
+      "velocityCvMean": 1.146003088316598,
+      "velocityCvP95": 1.771601407810139,
+      "completionSnapP95": 39.95394736842105,
+      "completionLagP95": 2062.4999999999995,
+      "firstVisibleLagP95": 0,
+      "maxAvoidableStallP95": 0,
+      "bandCoverageMean": 0.0792248850300717,
+      "delayedCases": 6,
+      "firstJumpShareP95": 0.036132829755278734,
+      "firstThreeJumpShareP95": 0.10016227515264862,
+      "shareAfter250MsP95": 0.07575757575757576,
+      "shareAfter750MsP95": 0.1471698113207547,
+      "shareAfter750MsMin": 0.1471698113207547
+    }
+  ],
+  "client": {
+    "traceCount": 3,
+    "delayScale": 0.08,
+    "frameMs": 16.666666666666668,
+    "rows": [
+      {
+        "profile": "balanced",
+        "traces": 3,
+        "chars": 3209,
+        "notificationsPer1kCharsMean": 274.07624568616893,
+        "notificationsPer1kCharsP95": 453.4522586290583,
+        "visibleUpdatesPer1kCharsMean": 57.59970643218122,
+        "visibleUpdatesPer1kCharsP95": 77.13722038733877,
+        "firstVisibleLagP95": 0,
+        "completionLagP95": 89.77131000000062
+      },
+      {
+        "profile": "fastFirst",
+        "traces": 3,
+        "chars": 3209,
+        "notificationsPer1kCharsMean": 279.9005796487782,
+        "notificationsPer1kCharsP95": 466.38870935361376,
+        "visibleUpdatesPer1kCharsMean": 63.424040394790445,
+        "visibleUpdatesPer1kCharsP95": 91.11147689395497,
+        "firstVisibleLagP95": 0,
+        "completionLagP95": 104.62994000000144
+      },
+      {
+        "profile": "softFinish",
+        "traces": 3,
+        "chars": 3209,
+        "notificationsPer1kCharsMean": 285.4856154638122,
+        "notificationsPer1kCharsP95": 476.29487758329617,
+        "visibleUpdatesPer1kCharsMean": 69.0090762098245,
+        "visibleUpdatesPer1kCharsP95": 100.15994372465454,
+        "firstVisibleLagP95": 0,
+        "completionLagP95": 137.43753000000362
+      }
+    ]
+  },
+  "performance": {
+    "rounds": 1,
+    "frameMs": 16.666666666666668,
+    "heapDeltaMb": 6.883819580078125,
+    "rows": [
+      {
+        "profile": "balanced",
+        "traces": 8,
+        "events": 1485,
+        "chars": 32828,
+        "samples": 7191,
+        "elapsedMs": 12.684300000000803,
+        "eventsPerSec": 117073.86296444469,
+        "charsPerSec": 2588081.328886728,
+        "samplesPerSec": 566921.3121732806,
+        "microsecondsPerEvent": 8.541616161616702,
+        "microsecondsPerFrame": 1.7639132248645255
+      },
+      {
+        "profile": "fastFirst",
+        "traces": 8,
+        "events": 1485,
+        "chars": 32828,
+        "samples": 7129,
+        "elapsedMs": 11.37449999999808,
+        "eventsPerSec": 130555.18923910949,
+        "charsPerSec": 2886104.8837316404,
+        "samplesPerSec": 626752.8243000751,
+        "microsecondsPerEvent": 7.659595959594666,
+        "microsecondsPerFrame": 1.5955253191188217
+      },
+      {
+        "profile": "softFinish",
+        "traces": 8,
+        "events": 1485,
+        "chars": 32828,
+        "samples": 7220,
+        "elapsedMs": 11.204299999997602,
+        "eventsPerSec": 132538.40043557543,
+        "charsPerSec": 2929946.5383832124,
+        "samplesPerSec": 644395.4553164005,
+        "microsecondsPerEvent": 7.54498316498155,
+        "microsecondsPerFrame": 1.5518421052628257
+      }
+    ]
+  },
+  "size": {
+    "coreGzipBytes": 9736,
+    "coreTypesBytes": 4865,
+    "tarballBytes": 11348,
+    "coreWithinBudget": true,
+    "tarballWithinBudget": true,
+    "tarballName": "ramenm-soft-llm-stream-0.6.5.tgz",
+    "minifier": "terser",
+    "sourceBundleSha256": "616bc9ff65cca1c7aef84b15f4d6ea36014bd23c02c52cebc28c6a890180d1f2",
+    "fallbackBundleSha256": null,
+    "fallbackInSync": true,
+    "smokeText": "Hello world",
+    "coreExports": [
+      "DEFAULT_REVEAL_TUNING",
+      "EMPTY_DEBUG_STATE",
+      "EMPTY_SNAPSHOT",
+      "FAST_FIRST_REVEAL_TUNING",
+      "REVEAL_TUNING_PRESETS",
+      "SOFT_FINISH_REVEAL_TUNING",
+      "adapters",
+      "createSoftLlmChatStream",
+      "createSoftLlmStream",
+      "mergeRevealTuning",
+      "resolveRevealTuningPreset"
+    ],
+    "consumerSmokeText": "Hello world",
+    "consumerTypecheckOk": true,
+    "consumerExports": [
+      "DEFAULT_REVEAL_TUNING",
+      "EMPTY_DEBUG_STATE",
+      "EMPTY_SNAPSHOT",
+      "FAST_FIRST_REVEAL_TUNING",
+      "REVEAL_TUNING_PRESETS",
+      "SOFT_FINISH_REVEAL_TUNING",
+      "adapters",
+      "createSoftLlmChatStream",
+      "createSoftLlmStream",
+      "mergeRevealTuning",
+      "resolveRevealTuningPreset"
+    ],
+    "consumerTarballName": "ramenm-soft-llm-stream-0.6.5.tgz",
+    "consumerTarballBytes": 11348
+  },
+  "recommendations": {
+    "demoProfile": "fastFirst",
+    "idleSoftnessProfile": "fastFirst"
+  },
+  "gates": [
+    {
+      "name": "protocol-matrix",
+      "ok": true,
+      "detail": "9/9 scenarios passed"
+    },
+    {
+      "name": "lean-core-size",
+      "ok": true,
+      "detail": "9736/10240 bytes"
+    },
+    {
+      "name": "lean-tarball-size",
+      "ok": true,
+      "detail": "11348/12288 bytes"
+    },
+    {
+      "name": "lean-source-sync",
+      "ok": true,
+      "detail": "terser:616bc9ff65cc"
+    },
+    {
+      "name": "lean-tarball-install",
+      "ok": true,
+      "detail": "ramenm-soft-llm-stream-0.6.5.tgz:Hello world"
+    },
+    {
+      "name": "lean-tarball-types",
+      "ok": true,
+      "detail": "ramenm-soft-llm-stream-0.6.5.tgz:typecheck=true"
+    },
+    {
+      "name": "idle-gap-softness",
+      "ok": true,
+      "detail": "balanced:250=0.076,750=0.147 | fastFirst:250=0.075,750=0.147 | softFinish:250=0.076,750=0.147"
+    },
+    {
+      "name": "stress-tail-latency",
+      "ok": true,
+      "detail": "balanced:482.5ms | fastFirst:418.3ms | softFinish:513.3ms"
+    },
+    {
+      "name": "client-update-density",
+      "ok": true,
+      "detail": "balanced:77.1 | fastFirst:91.1 | softFinish:100.2"
+    }
+  ]
+}

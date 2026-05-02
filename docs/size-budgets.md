@@ -27,7 +27,7 @@ When local `terser` is unavailable, the repo now falls back to a checked-in lean
 
 - `package/dist/core.js.gz = 9736 B`
 - `package/dist/core.d.ts = 4865 B`
-- `ramenm-soft-llm-stream-0.6.4.tgz = 11129 B`
+- `ramenm-soft-llm-stream-0.6.5.tgz = 11348 B`
 
 ## Implementation notes
 

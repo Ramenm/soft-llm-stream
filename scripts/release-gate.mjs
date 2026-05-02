@@ -1,10 +1,14 @@
 import { spawnSync } from "node:child_process";
 
+import { resolveTypeScriptInvocation, shouldUseShellForCommand } from "./lib/tooling.mjs";
+
+const typeScriptCli = resolveTypeScriptInvocation();
+
 const steps = [
   {
     label: "typecheck",
-    command: "tsc",
-    args: ["-p", "tsconfig.json", "--noEmit"],
+    command: typeScriptCli.command,
+    args: [...typeScriptCli.args, "-p", "tsconfig.json", "--noEmit"],
   },
   {
     label: "clean",
@@ -13,8 +17,8 @@ const steps = [
   },
   {
     label: "build",
-    command: "tsc",
-    args: ["-p", "tsconfig.build.json"],
+    command: typeScriptCli.command,
+    args: [...typeScriptCli.args, "-p", "tsconfig.build.json"],
   },
   {
     label: "test",
@@ -64,7 +68,7 @@ for (const step of steps) {
 
   const result = spawnSync(step.command, step.args, {
     stdio: "inherit",
-    shell: process.platform === "win32",
+    shell: shouldUseShellForCommand(step.command),
     env: {
       ...process.env,
       ...(step.env ?? {}),
